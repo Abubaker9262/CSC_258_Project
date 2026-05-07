@@ -28,8 +28,9 @@ from services.processing.config import (
     EXCLUDED_AUTHORS,
     MAX_EXAMPLES_PER_TOPIC,
     MAX_TRACKED_TOPICS,
+    STOPWORDS
 )
-from services.storage.logs.unwanted_words import STOPWORDS
+
 
 URL_PATTERN = re.compile(r"https?://\S+|www\.\S+")
 HASHTAG_PATTERN = re.compile(r"#[a-zA-Z][a-zA-Z0-9_]{2,}")

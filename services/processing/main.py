@@ -30,7 +30,8 @@ if __name__ == "__main__":
     consumer = KafkaPostConsumer()      # reads post from Kafka
     processor = TrendProcessor()        # extracts and counts trends
     store = TrendStore()                # stores the results
-
+    # store = DatabaseTrendStore()      # database switch
+    
     try:
         logger.info("Starting processing service.")
 
@@ -50,7 +51,7 @@ if __name__ == "__main__":
 
                 store.save_snapshot(processor.posts_processed, trends)          # Save the trends
                 store.save_example_posts(processor.posts_processed, examples)   # Save the post examples
-
+                
     except Exception:
         logger.exception("Processing service stopped because of an unexpected error.")
         raise               # Docker can see the process crashed and restart it if configured
