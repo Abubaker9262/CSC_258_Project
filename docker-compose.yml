@@ -37,10 +37,42 @@ services:
     environment:
       PYTHONUNBUFFERED: "1"
       KAFKA_BOOTSTRAP_SERVERS: broker:9093
+      STORAGE_API_URL: http://storage:5001
     volumes:
       - .:/app
     depends_on:
       - broker
+      - storage
+    restart: unless-stopped
+
+
+  db:
+    image: postgres:16
+    container_name: trends-db
+    environment:
+      POSTGRES_DB: trends_db
+      POSTGRES_USER: trend_user
+      POSTGRES_PASSWORD: trend_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - trends-db-data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  storage:
+    image: python:3.11-slim
+    container_name: storage
+    working_dir: /app
+    command: sh -c "pip install --no-cache-dir -r requirements.txt && python -m services.storage.main"
+    environment:
+      PYTHONUNBUFFERED: "1"
+      DATABASE_URL: postgresql://trend_user:trend_password@db:5432/trends_db
+    ports:
+      - "5001:5001"
+    volumes:
+      - .:/app
+    depends_on:
+      - db
     restart: unless-stopped
 
   dashboard:
@@ -53,5 +85,8 @@ services:
     volumes:
       - .:/app
     depends_on:
-      - processing
+      - storage
     restart: unless-stopped
+    
+volumes:
+  trends-db-data:

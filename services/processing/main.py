@@ -13,8 +13,7 @@ from services.logging_utils import get_logger
 from services.processing.consumer import KafkaPostConsumer
 from services.processing.processor import TrendProcessor
 from services.processing.config import POSTS_LAP, TOP_TERMS
-from services.storage.trend_save import TrendStore
-
+from services.storage.api_client import StorageApiClient
 
 logger = get_logger("services.processing.main")
 
@@ -29,8 +28,7 @@ if __name__ == "__main__":
 
     consumer = KafkaPostConsumer()      # reads post from Kafka
     processor = TrendProcessor()        # extracts and counts trends
-    store = TrendStore()                # stores the results
-    # store = DatabaseTrendStore()      # database switch
+    store = StorageApiClient()          # sends results to the storage service API
     
     try:
         logger.info("Starting processing service.")

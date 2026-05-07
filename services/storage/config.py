@@ -8,4 +8,8 @@ CREATE_TABLE_SQL_PATH = "services/storage/sql_lib/create_tables.sql"
 INSERT_TREND_SNAPSHOT_SQL_PATH = "services/storage/sql_lib/insert_trend_snapshot.sql"
 INSERT_TREND_TERM_SQL_PATH = "services/storage/sql_lib/insert_trend_term.sql"
 INSERT_TREND_EXAMPLE_SQL_PATH = "services/storage/sql_lib/insert_trend_example.sql"
+SELECT_LATEST_TRENDS_SQL_PATH = "services/storage/sql_lib/select_latest_trends.sql"
+SELECT_LATEST_EXAMPLES_SQL_PATH = "services/storage/sql_lib/select_latest_examples.sql"
+
 DATABASE_URL = os.getenv("DATABASE_URL","postgresql://trend_user:trend_password@localhost:5432/trends_db")
+STORAGE_API_URL = os.getenv("STORAGE_API_URL", "http://localhost:5001")

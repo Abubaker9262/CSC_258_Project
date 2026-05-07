@@ -1,5 +1,6 @@
-const TREND_DATA_URL = "../storage/logs/trends.json";
-const EXAMPLE_POSTS_URL = "../storage/logs/example_posts.json";
+const API_BASE_URL = window.DASHBOARD_API_BASE_URL || "http://localhost:5001";
+const TREND_DATA_URL = `${API_BASE_URL}/api/latest-trends`;
+const EXAMPLE_POSTS_URL = `${API_BASE_URL}/api/latest-examples`;
 const REFRESH_MS = 5000;
 
 async function loadTrends() {
@@ -19,26 +20,36 @@ async function loadTrends() {
       throw new Error(`examples HTTP ${exampleResponse.status}`);
     }
 
-    const snapshots = await trendResponse.json();
-    const exampleSnapshots = await exampleResponse.json();
+    const trendPayload = await trendResponse.json();
+    const examplePayload = await exampleResponse.json();
 
-    if (!Array.isArray(snapshots) || snapshots.length === 0) {
+    const latest = latestSnapshotFrom(trendPayload);
+    const latestExamples = latestSnapshotFrom(examplePayload);
+
+    if (!latest) {
       status.textContent = "No trend snapshots saved yet.";
       return;
     }
 
-    const latest = snapshots[snapshots.length - 1];
-    const latestExamples = Array.isArray(exampleSnapshots) && exampleSnapshots.length > 0
-      ? exampleSnapshots[exampleSnapshots.length - 1]
-      : null;
-
     renderSnapshot(latest);
     renderExamples(latestExamples);
 
-    status.textContent = `Loaded ${snapshots.length} snapshots`;
+    status.textContent = "Loaded latest snapshot";
   } catch (error) {
     status.textContent = `Could not load trend data: ${error.message}`;
   }
+}
+
+function latestSnapshotFrom(payload) {
+  if (Array.isArray(payload)) {
+    return payload.length > 0 ? payload[payload.length - 1] : null;
+  }
+
+  if (payload && typeof payload === "object") {
+    return payload;
+  }
+
+  return null;
 }
 
 function renderSnapshot(snapshot) {
