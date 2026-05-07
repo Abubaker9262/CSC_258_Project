@@ -1,3 +1,7 @@
+# -------------------------------------- 
+# Configuration settings for kafka broker
+# -------------------------------------
+
 import os
 
 KAFKA_BOOTSTRAP_SERVERS = os.getenv("KAFKA_BOOTSTRAP_SERVERS", "localhost:9092")

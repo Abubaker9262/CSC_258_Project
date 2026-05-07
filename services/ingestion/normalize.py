@@ -2,8 +2,6 @@
 # Normalizes the post from a Bluesky event to a defined JSON format
 #  https://github.com/bluesky-social/jetstream
 #
-#   -- security --
-#       Full post text is not logged. 
 # --------------------------------------------------------------------------------
 
 from services.ingestion.config import *
