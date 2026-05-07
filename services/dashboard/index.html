@@ -7,35 +7,40 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header>
-    <h1>Live Social Trends</h1>
+  <header class="app-header">
+    <div>
+      <p class="eyebrow">Real-time trend system</p>
+      <h1>Live Social Trends</h1>
+    </div>
+    <p id="status" class="status">Loading trend data...</p>
   </header>
 
-  <main>
+  <main class="dashboard-shell">
     <section class="summary">
-        
-      <div class="card">
+      <article class="metric-card">
         <h2>Posts Processed</h2>
         <p id="postsProcessed">0</p>
-      </div>
+      </article>
 
-      <div class="card">
+      <article class="metric-card">
         <h2>Last Updated</h2>
         <p id="lastUpdated">Waiting</p>
-      </div>
+      </article>
     </section>
 
-    <section>
-      <h2 class="section-title">Top Topics</h2>
+    <section class="panel">
+      <div class="panel-header">
+        <h2>Top Topics</h2>
+      </div>
       <div id="trendList" class="trend-list"></div>
     </section>
 
-    <section>
-      <h2 class="section-title">Example Posts</h2>
+    <section class="panel">
+      <div class="panel-header">
+        <h2>Example Posts</h2>
+      </div>
       <div id="exampleList" class="example-list"></div>
     </section>
-
-    <p id="status" class="status">Loading trend data...</p>
   </main>
 
   <script src="script.js"></script>

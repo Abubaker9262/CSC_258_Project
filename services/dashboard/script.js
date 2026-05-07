@@ -34,7 +34,7 @@ async function loadTrends() {
     renderSnapshot(latest);
     renderExamples(latestExamples);
 
-    status.textContent = "Loaded latest snapshot";
+    status.textContent = "Live";
   } catch (error) {
     status.textContent = `Could not load trend data: ${error.message}`;
   }
@@ -65,13 +65,14 @@ function renderSnapshot(snapshot) {
   const trendList = document.getElementById("trendList");
   trendList.innerHTML = "";
 
-  for (const trend of trends) {
+  trends.forEach((trend, index) => {
     const row = document.createElement("div");
     row.className = "trend-row";
 
     const width = Math.max((trend.count / maxCount) * 100, 4);
 
     row.innerHTML = `
+      <div class="rank">${index + 1}</div>
       <div class="term">${escapeHtml(trend.term)}</div>
       <div class="bar-wrap">
         <div class="bar" style="width: ${width}%"></div>
@@ -80,7 +81,7 @@ function renderSnapshot(snapshot) {
     `;
 
     trendList.appendChild(row);
-  }
+  });
 }
 
 function renderExamples(snapshot) {
