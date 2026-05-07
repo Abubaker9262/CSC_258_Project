@@ -13,7 +13,7 @@ from services.logging_utils import get_logger
 logger = get_logger("services.ingestion.main")
 
 # this is called everytime the websocket consumer detects an event.
-def handle_kafka_event(event):
+def handle_kafka_event(event, ws):
 
     # converts the event to a normalized format 
     post = normalize_post(event)    
