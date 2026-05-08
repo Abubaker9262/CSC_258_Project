@@ -1,11 +1,12 @@
+"""
 Description:
-#//This code defines a client that interacts with a storage API to save processed data from the Kafka pipeline.
+This code defines a client that interacts with a storage API to save processed data from the Kafka pipeline.
 It is responsible for sending trend snapshots and example posts to an external service using HTTP POST requests.
 The class uses JSON to format the data before sending it over the network. The save_snapshot method prepares and sends trending keyword data,
 while the save_example_posts method sends representative sample posts. A helper function _post_json handles the actual HTTP communication,
 ensuring the payload is correctly encoded and transmitted. The use of a configurable base URL allows flexibility in targeting different storage endpoints.
 This component acts as a bridge between the processing service and an external storage system. 
-Overall, it enables persistent storage of processed data in a structured and scalable way.//#
+Overall, it enables persistent storage of processed data in a structured and scalable way."""
 
 import json  # Used to convert Python objects into JSON format
 from urllib import request  # Used to send HTTP requests
