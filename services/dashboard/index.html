@@ -1,43 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Live Trends Dashboard</title>
-  <link rel="stylesheet" href="styles.css" />
+<!DOCTYPE html> <!-- Declares this document as HTML5 -->
+<html lang="en"> <!-- Root element of the page, language is English -->
+<head> <!-- Contains metadata and links -->
+  <meta charset="UTF-8" /> <!-- Sets character encoding to UTF-8 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <!-- Makes the page responsive -->
+  <title>Live Trends Dashboard</title> <!-- Title shown in browser tab -->
+  <link rel="stylesheet" href="styles.css" /> <!-- Links external CSS file -->
 </head>
-<body>
-  <header>
-    <h1>Live Social Trends</h1>
+<body> <!-- Main visible content -->
+  <header> <!-- Top section of the page -->
+    <h1>Live Social Trends</h1> <!-- Main heading -->
   </header>
 
-  <main>
-    <section class="summary">
+  <main> <!-- Main content container -->
+    <section class="summary"> <!-- Section for summary cards -->
         
-      <div class="card">
-        <h2>Posts Processed</h2>
-        <p id="postsProcessed">0</p>
+      <div class="card"> <!-- Card for posts processed -->
+        <h2>Posts Processed</h2> <!-- Title -->
+        <p id="postsProcessed">0</p> <!-- Value updated dynamically via JavaScript -->
       </div>
 
-      <div class="card">
-        <h2>Last Updated</h2>
-        <p id="lastUpdated">Waiting</p>
+      <div class="card"> <!-- Card for last updated time -->
+        <h2>Last Updated</h2> <!-- Title -->
+        <p id="lastUpdated">Waiting</p> <!-- Placeholder text, updated dynamically -->
       </div>
     </section>
 
-    <section>
-      <h2 class="section-title">Top Topics</h2>
-      <div id="trendList" class="trend-list"></div>
+    <section> <!-- Section for trending topics -->
+      <h2 class="section-title">Top Topics</h2> <!-- Section title -->
+      <div id="trendList" class="trend-list"></div> <!-- JS inserts trend data here -->
     </section>
 
-    <section>
-      <h2 class="section-title">Example Posts</h2>
-      <div id="exampleList" class="example-list"></div>
+    <section> <!-- Section for example posts -->
+      <h2 class="section-title">Example Posts</h2> <!-- Section title -->
+      <div id="exampleList" class="example-list"></div> <!-- JS inserts posts here -->
     </section>
 
-    <p id="status" class="status">Loading trend data...</p>
+    <p id="status" class="status">Loading trend data...</p> <!-- Shows loading or error status -->
   </main>
 
-  <script src="script.js"></script>
+  <script src="script.js"></script> <!-- Links JavaScript file for dynamic behavior -->
 </body>
 </html>
